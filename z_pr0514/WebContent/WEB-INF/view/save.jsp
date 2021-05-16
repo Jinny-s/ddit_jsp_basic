@@ -9,14 +9,15 @@
 <title></title>
 </head>
 <body>
-<form action="${url }" method="get" name="fm">
-</form>
+<%-- <form action="${url }" method="get" name="fm"> --%>
+<!-- </form> -->
 
 <script type="text/javascript">
-	<c:if test="${not empty msg }">
+	<c:if test="${not empty msg}">
 		alert('${msg}')
 	</c:if>
-	document.fm.submit();
+	location.href="${url}"	
+// 	document.fm.submit();
 </script>
 </body>
 </html>

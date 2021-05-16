@@ -8,7 +8,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>JINNY's Member CRUD</title>
-
+  <style type="text/css">
+  	@font-face {
+	    font-family: 'gmMedium';
+	    src: url('/member/resources/css/GmarketSansTTFMedium.ttf') format('truetype');
+	}
+	body{
+		font-family: 'gmMedium' !important;
+	}
+  </style>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <link rel="stylesheet" href="/member/resources/bootstrap/plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="/member/resources/bootstrap/dist/css/adminlte.min.css">

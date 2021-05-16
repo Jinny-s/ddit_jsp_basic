@@ -2,16 +2,27 @@
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>JINNY's Member CRUD</title>
-
+  <style type="text/css">
+  	@font-face {
+	    font-family: 'gmMedium';
+	    src: url('/member/resources/css/GmarketSansTTFMedium.ttf') format('truetype');
+	}
+	body {
+		font-family: 'gmMedium' !important;
+  </style>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <link rel="stylesheet" href="/member/resources/bootstrap/plugins/fontawesome-free/css/all.min.css">
-  <link rel="stylesheet" href="/member/resources/bootstrap/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<c:url value='/resources/bootstrap/plugins/fontawesome-free/css/all.min.css' />">
+  <link rel="stylesheet" href="<c:url value='/resources/bootstrap/dist/css/adminlte.min.css' />">
+  <link rel="stylesheet" href="<c:url value='/resources/bootstrap/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' />">
+  <link rel="stylesheet" href="<c:url value='/resources/bootstrap/plugins/datatables-responsive/css/responsive.bootstrap4.min.css' />">
+  <link rel="stylesheet" href="<c:url value='/resources/bootstrap/plugins/datatables-buttons/css/buttons.bootstrap4.min.css' />">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -22,7 +33,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Main</a>
+        <a href="<c:url value='/main' />" class="nav-link">Main</a>
       </li>
     </ul>
 
@@ -40,7 +51,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="<c:url value='/main' />" class="brand-link">
       <img src="/member/resources/bootstrap/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">JINNY</span>
     </a>
@@ -70,15 +81,21 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<c:url value='/main' />" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
-              <p>Main Page</p>
+              <p>메인 페이지</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<c:url value='/register' />" class="nav-link">
               <i class="nav-icon fas fa-user-plus"></i>
-              <p>Register</p>
+              <p>회원 등록</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<c:url value='/list' />" class="nav-link">
+              <i class="nav-icon far fa-address-book"></i>
+              <p>전체 회원 목록</p>
             </a>
           </li>
           <li class="nav-item">
