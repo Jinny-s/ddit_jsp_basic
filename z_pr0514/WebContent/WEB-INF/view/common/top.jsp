@@ -98,29 +98,6 @@
               <p>전체 회원 목록</p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-address-book"></i>
-              <p>
-                List
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
-                  <i class="fas fa-user-edit"></i>
-                  <p>Modify</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/charts/flot.html" class="nav-link">
-                  <i class="fas fa-user-slash"></i>
-                  <p>Delete</p>
-                </a>
-              </li>
-            </ul>
-          </li>
         </ul>
       </nav>
     </div>
