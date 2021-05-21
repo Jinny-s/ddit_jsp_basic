@@ -5,12 +5,17 @@
 <configuration>
 	<properties resource="kr/or/ddit/properties/db.properties" />
 	
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+	
 	<typeAliases>
 		<typeAlias type="java.lang.String" alias="str" />
 		<typeAlias type="java.lang.Integer" alias="int" />
 		<typeAlias type="kr.or.ddit.dto.MemberVO" alias="member" />
 		
 	</typeAliases>
+	
 	
 	<environments default="development">
 		<environment id="development">

@@ -31,7 +31,7 @@ public class TestOracleMyBatisSqlSessionFactory {
 		List<Object> list = session.selectList("Member-Mapper.selectMemberList");
 		System.out.println(list);
 		
-		MemberVO mem = session.selectOne("Member-Mapper.selectMemberByID");
+		MemberVO mem = session.selectOne("Member-Mapper.selectMemberByID", "mem001");
 		System.out.println(mem);
 		
 		Assert.assertEquals("java", mem.getMemPw());
