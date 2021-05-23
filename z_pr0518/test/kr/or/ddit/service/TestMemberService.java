@@ -20,7 +20,17 @@ public class TestMemberService {
 	
 	@Test
 	public void testInsertMember() throws Exception {
+		MemberVO member = new MemberVO();
+		int cnt = 0;
 		
+		member.setMemId("mem999");
+		member.setMemPw("test");
+		member.setMemEmail("java@ja.va");
+		member.setMemHp("010-9999-9999");
+		
+		cnt = service.insertMember(member);
+		
+		Assert.assertEquals(1, cnt);
 	}
 	
 	@Test

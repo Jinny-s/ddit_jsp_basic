@@ -11,15 +11,14 @@ import kr.or.ddit.dto.MemberVO;
 
 public class MockMemberDAO implements MemberDAO {
 
+//	private List<MemberVO> memList = new ArrayList<>();
+	
 	@Override
 	public int insertMember(SqlSession session, MemberVO member) throws SQLException {
-		member = null;
-		
 		if(session.getConnection() == null) throw new SQLException();
+		System.out.println(member + " insert 테스트");
 		
-		member.setMemId("mem999");
-		
-		return 0;
+		return 1;
 	}
 
 	@Override
