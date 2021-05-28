@@ -1,12 +1,14 @@
 package kr.or.ddit.dto;
 
+import java.util.Date;
+
 public class MemberVO {
 	private String id;
 	private String pwd;
 	private String email;
 	private String picture;
 	private int enabled;
-	private String regdate;
+	private Date regdate;
 	private String phone;
 	private String name;
 	private String register;
@@ -43,10 +45,10 @@ public class MemberVO {
 	public void setEnabled(int enabled) {
 		this.enabled = enabled;
 	}
-	public String getRegdate() {
+	public Date getRegdate() {
 		return regdate;
 	}
-	public void setRegdate(String regdate) {
+	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
 	public String getPhone() {

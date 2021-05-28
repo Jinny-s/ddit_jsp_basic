@@ -50,7 +50,7 @@
 		WHERE  ID = #{id}
 	</delete>
 	
-	<select id="selectMemberByID" resultType="member">
+	<select id="selectMemberByID" parameterType="str" resultType="member">
 		SELECT *
 		FROM   MEMBER
 		WHERE  ID = #{id}

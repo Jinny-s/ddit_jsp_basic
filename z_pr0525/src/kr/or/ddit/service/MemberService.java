@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 import kr.or.ddit.dto.MemberVO;
+import kr.or.ddit.exception.InvalidPasswordException;
+import kr.or.ddit.exception.NotFoundIDException;
 
 public interface MemberService {
 
@@ -16,5 +18,7 @@ public interface MemberService {
 	MemberVO getMemberByID(String id) throws SQLException;
 	
 	List<MemberVO> getMemberList() throws SQLException;
+	
+	void login(String id, String pwd) throws SQLException, NotFoundIDException, InvalidPasswordException;
 	
 }

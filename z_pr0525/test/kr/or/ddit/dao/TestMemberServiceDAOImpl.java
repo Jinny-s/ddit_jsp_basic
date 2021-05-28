@@ -29,7 +29,7 @@ public class TestMemberServiceDAOImpl {
 		member.setEmail("java@ja.va");
 		member.setPicture("test");
 		member.setEnabled(1);
-		member.setRegdate("2021/05/25");
+//		member.setRegdate("2021/05/25");
 		member.setPhone("010-9999-9999");
 		member.setName("뿅뿅");
 		member.setRegister("널");

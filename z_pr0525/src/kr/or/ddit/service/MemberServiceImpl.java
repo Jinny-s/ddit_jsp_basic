@@ -9,6 +9,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import kr.or.ddit.dao.MemberDAO;
 import kr.or.ddit.dao.MemberDAOImpl;
 import kr.or.ddit.dto.MemberVO;
+import kr.or.ddit.exception.InvalidPasswordException;
+import kr.or.ddit.exception.NotFoundIDException;
 import kr.or.ddit.mybatis.OracleMyBatisSqlSessionFactory;
 
 public class MemberServiceImpl implements MemberService {
@@ -76,5 +78,19 @@ public class MemberServiceImpl implements MemberService {
 		session.close();
 		
 		return memberList;
+	}
+
+	@Override
+	public void login(String id, String pwd) throws SQLException, NotFoundIDException, InvalidPasswordException {
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			MemberVO member = memberDAO.selectMemberByID(session, id);
+			if (member == null) 
+				throw new NotFoundIDException();
+			if (!pwd.equals(member.getPwd()))
+				throw new InvalidPasswordException();
+		} finally {
+			session.close();
+		}
 	}
 }
