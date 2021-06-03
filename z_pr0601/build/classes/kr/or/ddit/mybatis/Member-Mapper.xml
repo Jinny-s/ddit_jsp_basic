@@ -4,33 +4,50 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Member-Mapper">
 	
-	<insert id="insertMember">
-		INSERT INTO MEMBER (
-			ID
-			, PWD
-			, EMAIL
-			, PICTURE
-			, ENABLED
-			, REGDATE
-			, PHONE
-			, NAME
-			, REGISTER
-			, ADDRESS
-			, AUTHORITY
-		) VALUES (
-			#{id} 
-			, #{pwd} 
-			, #{email} 
-			, #{picture} 
-			, #{enabled} 
-			, #{regdate} 
-			, #{phone} 
-			, #{name} 
-			, #{register} 
-			, #{address} 
-			, #{authority} 
-		)
-	</insert>
+	<sql id="search">
+		<if test="searchType == 'i'.toString()">
+			and id like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'p'.toString()">
+			and phone like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'e'.toString()">
+			and email like '%'||#{keyword}||'%'
+		</if>
+	</sql>
+
+	<select id="selectSearchMemberList" resultType="member">
+		select *
+		from member
+		where id is not null
+		<include refid="search" />
+		order by regDate desc
+	</select>
+	
+	<select id="selectSearchMemberListCount" resultType="int">
+		select count(*)
+		from   member
+		where  id is not null
+		<include refid="search" />
+	</select>
+
+	<select id="selectMemberByID" parameterType="str"
+		resultType="member">
+		SELECT *
+		FROM MEMBER
+		WHERE ID = #{id}
+	</select>
+
+	<select id="selectMemberList" resultType="member">
+		SELECT *
+		FROM MEMBER
+	</select>
+	
+	<update id="insertMember" parameterType="member">
+		insert into
+		member(id, pwd, email, phone, picture, name, authority)
+		values(#{id}, #{pwd}, #{email}, #{phone}, #{picture}, #{name}, #{authority})
+	</update>
 	
 	<update id="updateMember">
 		UPDATE MEMBER
@@ -50,15 +67,4 @@
 		WHERE  ID = #{id}
 	</delete>
 	
-	<select id="selectMemberByID" parameterType="str" resultType="member">
-		SELECT *
-		FROM   MEMBER
-		WHERE  ID = #{id}
-	</select>
-	
-	<select id="selectMemberList" resultType="member">
-		SELECT *
-		FROM   MEMBER
-	</select>
-
 </mapper>
