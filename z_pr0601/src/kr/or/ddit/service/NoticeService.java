@@ -14,8 +14,6 @@ public interface NoticeService {
 	NoticeVO getNotice(int nno) throws SQLException;
 	
 	// 게시글 리스트 조회
-	List<NoticeVO> getNoticeList() throws SQLException;
-	List<NoticeVO> getNoticeList(Criteria cri) throws SQLException;
 	Map<String, Object> getNoticeList(SearchCriteria cri) throws SQLException;
 	
 	

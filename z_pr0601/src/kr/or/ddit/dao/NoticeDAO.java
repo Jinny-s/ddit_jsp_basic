@@ -15,8 +15,6 @@ public interface NoticeDAO {
 	NoticeVO selectNoticeByNno(SqlSession session, int nno) throws SQLException;
 	
 	// 게시글리스트 조회
-	List<NoticeVO> selectNoticeList(SqlSession session) throws SQLException;
-	List<NoticeVO> selectNoticeList(SqlSession session, Criteria cri) throws SQLException;
 	List<NoticeVO> selectNoticeList(SqlSession session, SearchCriteria cri) throws SQLException;
 	
 	// 검색 결과의 전체 리스트 개수

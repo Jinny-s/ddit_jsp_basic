@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Order-Mapper">
+	
+	<sql id="search">
+		<if test="searchType == 'i'.toString()">
+			and id like '%'|| #{id} ||'%'
+		</if>
+		<if test="searchType == 'd'.toString()">
+			and to_char(orderdate,'yyyy-mm-dd') >= to_char(sysdate-#{date},'yyyy-mm-dd')
+		</if>
+		
+	</sql>
+	
+	<select id="selectOrderList" resultType="order">
+		select *
+		from   orderlist
+		where  ono is not null
+		<include refid="search" />
+		order by orderdate desc
+	</select>
+	
+	<select id="selectOrderListById" parameterType="str" resultType="order">
+		select *
+		from   orderlist
+		where  id=#{id}
+		<include refid="search" />
+		order by orderdate desc
+	</select>
+	
+	<select id="selectOrderListCount" resultType="int">
+		select count(*)
+		from   orderlist
+	</select>
+	
+	<select id="selectOrderByOno" parameterType="int" resultType="order">
+		select *
+		fromt  orderlist
+		where  ono = #{ono}
+	</select>
+	
+</mapper>

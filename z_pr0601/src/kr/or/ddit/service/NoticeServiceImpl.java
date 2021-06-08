@@ -38,28 +38,6 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public List<NoticeVO> getNoticeList() throws SQLException {
-		SqlSession session = sqlSessionFactory.openSession();
-		try {
-			List<NoticeVO> noticeList = noticeDAO.selectNoticeList(session);
-			return noticeList;
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public List<NoticeVO> getNoticeList(Criteria cri) throws SQLException {
-		SqlSession session = sqlSessionFactory.openSession();
-		try {
-			List<NoticeVO> noticeList = noticeDAO.selectNoticeList(session, cri);
-			return noticeList;
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
 	public Map<String, Object> getNoticeList(SearchCriteria cri) throws SQLException {
 		SqlSession session = sqlSessionFactory.openSession();
 		

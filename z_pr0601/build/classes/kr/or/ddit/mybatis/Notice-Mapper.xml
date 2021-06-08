@@ -8,12 +8,36 @@
 		<if test="searchType == 't'.toString()">
 			and title like '%'||#{keyword}||'%'
 		</if>
+		<if test="searchType == 'w'.toString()">
+			and writer like '%'||#{keyword}||'%'
+		</if>
 		<if test="searchType == 'c'.toString()">
 			and content like '%'||#{keyword}||'%'
 		</if>
-		<if test="searchType == 'i'.toString()">
-			and id like '%'||#{keyword}||'%'
+		<if test="searchType == 'tc'.toString()">
+			and (
+			title like '%'||#{keyword}||'%'
+			or
+			writer like '%'||#{keyword}||'%'
+			)
 		</if>
+		<if test="searchType == 'cw'.toString()">
+			and (
+			content like '%'||#{keyword}||'%'
+			or
+			writer like '%'||#{keyword}||'%'
+			)
+		</if>
+		<if test="searchType == 'tcw'.toString()">
+			and (
+			title like '%'||#{keyword}||'%'
+			or
+			content like '%'||#{keyword}||'%'
+			or
+			writer like '%'||#{keyword}||'%'
+			)
+		</if>
+		
 	</sql>
 	
 	<select id="selectSearchNoticeList" resultType="notice">
@@ -29,6 +53,7 @@
 		from   notice
 		where  nno is not null
 		<include refid="search" />
+		order by regDate desc
 	</select>
 	
 	<select id="selectNoticeByNno" parameterType="int">

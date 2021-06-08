@@ -19,22 +19,6 @@ public class NoticeDAOImpl implements NoticeDAO {
 	}
 
 	@Override
-	public List<NoticeVO> selectNoticeList(SqlSession session) throws SQLException {
-		List<NoticeVO> noticeList = session.selectList("Notice-Mapper.selectNoticeList");
-		return noticeList;
-	}
-
-	@Override
-	public List<NoticeVO> selectNoticeList(SqlSession session, Criteria cri) throws SQLException {
-		int offset = cri.getStartRowNum();
-		int limit = cri.getPerPageNum();
-		RowBounds rowBounds = new RowBounds(offset, limit);
-		
-		List<NoticeVO> noticeList = session.selectList("Notice-Mapper.selectNoticeList", null, rowBounds);
-		return noticeList;
-	}
-
-	@Override
 	public List<NoticeVO> selectNoticeList(SqlSession session, SearchCriteria cri) throws SQLException {
 		int offset = cri.getStartRowNum();
 		int limit = cri.getPerPageNum();
@@ -47,7 +31,7 @@ public class NoticeDAOImpl implements NoticeDAO {
 	@Override
 	public int selectSearchNoticeListCount(SqlSession session, SearchCriteria cri) throws SQLException {
 		int count = 0;
-		count = session.selectOne("Notice-Mapper.selectSearchNoticeList", cri);
+		count = session.selectOne("Notice-Mapper.selectSearchNoticeListCount", cri);
 		return count;
 	}
 	
