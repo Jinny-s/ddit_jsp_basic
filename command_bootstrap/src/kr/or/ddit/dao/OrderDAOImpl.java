@@ -23,7 +23,6 @@ public class OrderDAOImpl implements OrderDAO {
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
 		List<OrderVO> orderlist = session.selectList("Order-Mapper.selectOrderList", cri, rowBounds);
-		System.out.println("오덜덜" + orderlist);
 		return orderlist;
 	}
 

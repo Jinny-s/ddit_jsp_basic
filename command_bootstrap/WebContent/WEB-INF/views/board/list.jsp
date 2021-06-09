@@ -6,11 +6,11 @@
 
 <c:set var="pageMaker" value="${dataMap.pageMaker }" />
 <c:set var="cri" value="${dataMap.pageMaker.cri }" />
-<c:set var="orderList" value="${dataMap.orderList }" />
+<c:set var="boardList" value="${dataMap.boardList }" />
 
 <head></head>
 
-<title>구매내역</title>
+<title>자유게시판</title>
 
 <body>
 	 <!-- Main content -->
@@ -18,13 +18,13 @@
 	  	<div class="container-fluid">
 	  		<div class="row md-2">
 	  			<div class="col-sm-6">
-	  				<h1>구매내역</h1>  				
+	  				<h1>자유 게시글 목록</h1>  				
 	  			</div>
 	  			<div class="col-sm-6">
 	  				<ol class="breadcrumb float-sm-right">
 			        <li class="breadcrumb-item">
 			        	<a href="list.do">
-				        	<i class="fa fa-dashboard"></i>구매내역
+				        	<i class="fa fa-dashboard"></i>자유게시판
 				        </a>
 			        </li>
 			        <li class="breadcrumb-item active">
@@ -40,21 +40,25 @@
     <section class="content">		
 		<div class="card">
 			<div class="card-header with-border">
-				<button type="button" class="btn btn-primary" id="registBtn" onclick="OpenWindow('registForm.do','공지등록',800,700);">공지등록</button>				
+				<button type="button" class="btn btn-primary" id="registBtn" onclick="OpenWindow('registForm.do','게시글 등록',800,700);">게시글 등록</button>				
 				<div id="keyword" class="card-tools" style="width:450px;">
 					<div class="input-group row">
 						<select class="form-control col-md-3" name="perPageNum" id="perPageNum"
 					  		onchange="list_go();">
 					  		<option value="10" >정렬개수</option>
-					  		<option value="2" ${cri.perPageNum == 2 ? 'selected':''}>2개씩</option>
-					  		<option value="5" ${cri.perPageNum == 5 ? 'selected':''}>5개씩</option>
-					  		<option value="10" ${cri.perPageNum == 10 ? 'selected':''}>10개씩</option>
+					  		<option value="20" ${cri.perPageNum == 20 ? 'selected':''}>20개씩</option>
+					  		<option value="50" ${cri.perPageNum == 50 ? 'selected':''}>50개씩</option>
+					  		<option value="100" ${cri.perPageNum == 100 ? 'selected':''}>100개씩</option>
 					  		
 					  	</select>						
 						<select class="form-control col-md-4" name="searchType" id="searchType">
 							<option value="tcw"  ${cri.searchType eq 'tcw' ? 'selected':'' }>전 체</option>
-							<option value="i" ${cri.searchType eq 'i' ? 'selected':'' }>회원아이디</option>
-							<option value="d" ${cri.searchType eq 'd' ? 'selected':'' }>날짜</option>
+							<option value="t" ${cri.searchType eq 't' ? 'selected':'' }>제 목</option>
+							<option value="w" ${cri.searchType eq 'w' ? 'selected':'' }>작성자</option>
+							<option value="c" ${cri.searchType eq 'c' ? 'selected':'' }>내 용</option>
+							<option value="tc" ${cri.searchType eq 'tc' ? 'selected':'' }>제목+내용</option>
+							<option value="cw" ${cri.searchType eq 'cw' ? 'selected':'' }>작성자+내용</option>							
+							<option value="tcw" ${cri.searchType eq 'tcw' ? 'selected':'' }>작성자+제목+내용</option>
 						</select>					
 						<input  class="form-control" type="text" name="keyword" placeholder="검색어를 입력하세요." value="${param.keyword }"/>
 						<span class="input-group-append">
@@ -69,32 +73,34 @@
 			<div class="card-body">
 				<table class="table table-bordered text-center" >					
 					<tr style="font-size:0.95em;">
-						<th>주문번호</th>
-						<th>주문자</th>
-						<th>총금액</th>
-						<th>주문일자</th>
+						<th style="width:10%;">번 호</th>
+						<th style="width:50%;">제 목</th>
+						<th style="width:15%;">작성자</th>
+						<th>등록일</th>
+						<th style="width:10%;">조회수</th>
 					</tr>				
-					<c:if test="${empty orderList}" >
+					<c:if test="${empty boardList }" >
 						<tr>
 							<td colspan="5">
 								<strong>해당 내용이 없습니다.</strong>
 							</td>
 						</tr>
 					</c:if>						
-					<c:forEach items="${orderList }" var="order">
+					<c:forEach items="${boardList }" var="board">
 						<tr style='font-size:0.85em;'>
+							<td>${board.bno }</td>
 							<td id="boardTitle" style="text-align:left;max-width: 100px; overflow: hidden; 
 												white-space: nowrap; text-overflow: ellipsis;">
 												
-							<a href="javascript:OpenWindow('detail.do?nno=${order.ono }','상세보기',800,700);">
-								${order.ono }								
+							<a href="javascript:OpenWindow('detail.do?bno=${board.bno }','상세보기',800,700);">
+								${board.title }								
 							</a>
 							</td>
-							<td>${order.id }</td>
-							<td>${order.totalprice }</td>
+							<td>${board.writer }</td>
 							<td>
-								<fmt:formatDate value="${order.orderdate }" pattern="yyyy-MM-dd"/>
+								<fmt:formatDate value="${board.regdate }" pattern="yyyy-MM-dd"/>
 							</td>
+							<td><span class="badge bg-red">${board.viewcnt }</span></td>
 						</tr>
 					</c:forEach>
 				</table>				

@@ -32,7 +32,6 @@ public class OrderServiceImpl implements OrderService {
 			Map<String, Object> dataMap = new HashMap<String, Object>();
 			
 			List<OrderVO> orderList = orderDAO.selectOrderList(session, cri);
-			System.out.println("오더리스트"+orderList);
 			
 			int totalCount = orderDAO.selectOrderListCount(session, cri);
 			
